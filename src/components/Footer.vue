@@ -1,0 +1,6 @@
+
+<template>
+    <div>
+        <p>I am a Footer....</p>
+    </div>
+</template>

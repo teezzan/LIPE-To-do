@@ -1,19 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <b-container id="extcon" class="bv-example-row">
+    <List
+      
+     />
+    </b-container>
+
+
+    <Footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header.vue";
+import List from "./components/List.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Header,
+    List,
+    Footer
+  },
+  data() {
+    return {
+      tasks: [
+        {"todo":"Hello Lorem","done":false},
+        {"todo":"Ipsium Lorem","done":false},
+        {"todo":"Saola code","done":true}
+        ],
+    };
   }
-}
+};
 </script>
 
 <style>
