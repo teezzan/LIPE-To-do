@@ -1,9 +1,10 @@
 <template>
+
   <div id="app">
-    <Header />
-    <b-container id="extcon" class="bv-example-row">
-    <List
-      
+    
+    <b-container id="extcon" class="bv-row">
+      <h1>TLDR ToDo</h1>
+    <List      
      />
     </b-container>
 
@@ -13,24 +14,18 @@
 </template>
 
 <script>
-import Header from "./components/Header.vue";
 import List from "./components/List.vue";
 import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
   components: {
-    Header,
     List,
     Footer
   },
   data() {
     return {
-      tasks: [
-        {"todo":"Hello Lorem","done":false},
-        {"todo":"Ipsium Lorem","done":false},
-        {"todo":"Saola code","done":true}
-        ],
+      
     };
   }
 };

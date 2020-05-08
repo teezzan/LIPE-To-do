@@ -1,30 +1,32 @@
 <template>
   <div>
-    <b-input-group prepend="Task" class="mt-3">
-      <b-form-input v-model="inputTask" @keypress.enter="add"></b-form-input>
+    <b-input-group prepend="Input" class="mt-5">
+      <b-form-input v-model="inputTask" @keypress.enter="add" placeholder="Enter Task"></b-form-input>
       <b-input-group-append>
         <b-button variant="info" @click="add">Enter</b-button>
       </b-input-group-append>
     </b-input-group>
     <hr />
-
     <b-list-group>
       <b-list-group-item
-        class="d-flex justify-content-between align-items-left"
+        class="d-flex justify-content-between align-items-left list"
+        v-bind:style="col(index)"
         v-for="(td, index) in this.tasks"
         :key="index"
       >
-        <input type="checkbox" id="checkbox" v-model="td.done" />
+        <input type="checkbox" id="checkbox" class="my-auto" v-model="td.done" />
 
-        <div class="lis">{{ td.todo}}</div>
+        <div class="textTodo">{{ td.todo}}</div>
 
         <b-button-group>
-          <button type="button" class="close" aria-label="Close" @click="showModal(index)">
-            <span aria-hidden="true">&times;</span>
+          <button type="button" class="close mr-3" aria-label="Close" @click="showModal(index)">
+            <span>
+              <b-icon-pen class="small"></b-icon-pen>
+            </span>
           </button>
 
           <button type="button" class="close" aria-label="Close" @click="fetch(index)">
-            <span aria-hidden="true">&times;</span>
+            <b-icon-x class="small"></b-icon-x>
           </button>
         </b-button-group>
       </b-list-group-item>
@@ -32,14 +34,17 @@
 
     <b-modal ref="my-modal" hide-footer title="Edit Task">
       <div class="d-block text-center">
-        <b-input-group prepend="Edit Task" class="mt-3">
-          <b-form-input v-model="tempTask" @keypress.enter="saveModal" @keypress.esc="cancelModal" ></b-form-input>
+        <b-input-group prepend="Task Input" class="mt-3">
+          <b-form-input v-model="tempTask" @keypress.enter="saveModal" @keypress.esc="cancelModal"></b-form-input>
         </b-input-group>
       </div>
       <b-form-row>
         <b-col>
-      <b-button class="mt-5" variant="outline-success" block @click="saveModal" >Save Task</b-button></b-col><b-col>
-      <b-button class="mt-5" variant="outline-danger" block @click="cancelModal" >Cancel</b-button></b-col>
+          <b-button class="mt-5" variant="outline-success" block @click="saveModal">Save Task</b-button>
+        </b-col>
+        <b-col>
+          <b-button class="mt-5" variant="outline-danger" block @click="cancelModal">Cancel</b-button>
+        </b-col>
       </b-form-row>
     </b-modal>
   </div>
@@ -53,9 +58,6 @@ export default {
       tempTask: null,
       curval: null,
       tasks: [
-        { todo: "Hello Lorem", done: false },
-        { todo: "Ipsium Lorem", done: false },
-        { todo: "Saola code", done: true }
       ]
     };
   },
@@ -86,20 +88,27 @@ export default {
     saveModal() {
       this.tasks[this.curval].todo = this.tempTask;
       this.$refs["my-modal"].hide();
-      this.curval=null;
-      
+      this.curval = null;
     },
     cancelModal() {
-      // We pass the ID of the button that we want to return focus to
-      // when the modal has hidden
-      this.$refs["my-modal"].toggle("#toggle-btn");
+      this.$refs["my-modal"].hide();
+    },
+    col(index) {
+      console.log(index);
+      if (this.tasks[index].done)
+        return { backgroundColor: `rgb(170, 212, 181)` };
+      return { backgroundColor: `rgb(236, 213, 178)` ,
+      
+      };
     }
   }
 };
 </script>
 <style scoped>
-.lis {
+.textTodo {
   word-break: break-all;
   margin: 2% 5%;
+  /* background-color: rgb(236, 213, 178); */
+  font-size: 125%;
 }
 </style>
