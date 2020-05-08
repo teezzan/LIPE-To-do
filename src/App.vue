@@ -3,7 +3,7 @@
   <div id="app">
     
     <b-container id="extcon" class="bv-row">
-      <h1 id="heading">TLDR ToDo</h1>
+      <h1 id="heading">LIPE To-Do</h1>
     <List      
      />
     </b-container>
