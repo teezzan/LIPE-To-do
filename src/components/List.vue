@@ -66,11 +66,9 @@ export default {
   },
   methods: {
     fetch(index) {
-      console.log(index);
       this.tasks.splice(index, 1);
     },
     update(){
-      console.log("hiiii");
       const parsed=JSON.stringify(this.tasks);
       localStorage.setItem('todo_data',parsed);
     },
@@ -78,7 +76,7 @@ export default {
       if (
         this.inputTask == "" ||
         this.inputTask == null ||
-        this.inputTask == "  "
+        this.inputTask == " "
       )
         return;
       this.tasks.push({ todo: this.inputTask, done: false });
@@ -86,7 +84,6 @@ export default {
     },
     showModal(val) {
       this.$refs["my-modal"].show();
-      console.log(val);
       this.curval = val;
       this.tempTask = this.tasks[val].todo;
     },
@@ -99,7 +96,6 @@ export default {
       this.$refs["my-modal"].hide();
     },
     col(index) {
-      console.log(index);
       if (this.tasks[index].done)
         return { backgroundColor: `rgb(170, 212, 181)` };
       return { backgroundColor: `rgb(236, 213, 178)` ,
@@ -128,7 +124,6 @@ export default {
 .textTodo {
   word-break: break-all;
   margin: 2% 5%;
-  /* background-color: rgb(236, 213, 178); */
   font-size: 125%;
 }
 </style>
