@@ -9,9 +9,8 @@ This a very minimal yet effective To do list implementation. The app was written
 
 Here are some screenshots of the app as seen on an Android phone.
 
-![Demo picture](/Screenshot_1.png)
+<img src="./Screenshot_1.png" width="400" height="790">
+<img src="./Screenshot_2.png" width="400" height="790">
+<img src="./Screenshot_3.png" width="400" height="790">
 
-![Demo picture 2](/Screenshot_2.png)
-
-![Demo picture](/Screenshot_3.png)
 
