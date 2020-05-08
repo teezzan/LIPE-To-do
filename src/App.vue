@@ -3,7 +3,7 @@
   <div id="app">
     
     <b-container id="extcon" class="bv-row">
-      <h1>TLDR ToDo</h1>
+      <h1 id="heading">TLDR ToDo</h1>
     <List      
      />
     </b-container>
@@ -39,5 +39,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#heading {
+  margin-top: -35px;
 }
 </style>

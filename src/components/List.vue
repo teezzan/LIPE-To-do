@@ -14,7 +14,7 @@
         v-for="(td, index) in this.tasks"
         :key="index"
       >
-        <input type="checkbox" id="checkbox" class="my-auto" v-model="td.done" />
+        <input type="checkbox" id="checkbox" class="my-auto" v-model="td.done" @change="update" />
 
         <div class="textTodo">{{ td.todo}}</div>
 
@@ -69,6 +69,11 @@ export default {
       console.log(index);
       this.tasks.splice(index, 1);
     },
+    update(){
+      console.log("hiiii");
+      const parsed=JSON.stringify(this.tasks);
+      localStorage.setItem('todo_data',parsed);
+    },
     add() {
       if (
         this.inputTask == "" ||
@@ -100,6 +105,21 @@ export default {
       return { backgroundColor: `rgb(236, 213, 178)` ,
       
       };
+    }
+  },
+  mounted() {
+    if(localStorage.getItem('todo_data')){
+      try{
+        this.tasks = JSON.parse(localStorage.getItem('todo_data'));
+      } catch(e){
+          localStorage.removeItem('todo_data');
+      }
+    }
+  },
+  watch: {
+    tasks(){
+      const parsed=JSON.stringify(this.tasks);
+      localStorage.setItem('todo_data',parsed);
     }
   }
 };
