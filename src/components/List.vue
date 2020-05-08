@@ -32,16 +32,15 @@
 
     <b-modal ref="my-modal" hide-footer title="Edit Task">
       <div class="d-block text-center">
-        <b-input-group prepend="Task" class="mt-3">
-          <b-form-input v-model="inputTask" @keypress.enter="add"></b-form-input>
-          <b-input-group-append>
-            <b-button variant="info" @click="add">Enter</b-button>
-          </b-input-group-append>
+        <b-input-group prepend="Edit Task" class="mt-3">
+          <b-form-input v-model="tempTask" @keypress.enter="saveModal" @keypress.esc="cancelModal" ></b-form-input>
         </b-input-group>
       </div>
-
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
-      <b-button class="mt-2" variant="outline-warning" block @click="toggleModal">Toggle Me</b-button>
+      <b-form-row>
+        <b-col>
+      <b-button class="mt-5" variant="outline-success" block @click="saveModal" >Save Task</b-button></b-col><b-col>
+      <b-button class="mt-5" variant="outline-danger" block @click="cancelModal" >Cancel</b-button></b-col>
+      </b-form-row>
     </b-modal>
   </div>
 </template>
@@ -51,6 +50,8 @@ export default {
   data() {
     return {
       inputTask: null,
+      tempTask: null,
+      curval: null,
       tasks: [
         { todo: "Hello Lorem", done: false },
         { todo: "Ipsium Lorem", done: false },
@@ -79,11 +80,16 @@ export default {
     showModal(val) {
       this.$refs["my-modal"].show();
       console.log(val);
+      this.curval = val;
+      this.tempTask = this.tasks[val].todo;
     },
-    hideModal() {
+    saveModal() {
+      this.tasks[this.curval].todo = this.tempTask;
       this.$refs["my-modal"].hide();
+      this.curval=null;
+      
     },
-    toggleModal() {
+    cancelModal() {
       // We pass the ID of the button that we want to return focus to
       // when the modal has hidden
       this.$refs["my-modal"].toggle("#toggle-btn");
